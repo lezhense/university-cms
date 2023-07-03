@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<head>
+<meta charset="UTF-8">
+<title>Groups</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+	<p>There is a table of all groups below</p>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Courses</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+		<th:block th:each="group : ${groups}">
+			<tr>
+				<td th:text="${group.id}"></td>
+				<td th:text="${group.name}"></td>
+				<td th:text="${group.courses}"></td>
+				<td><a sec:authorize="hasAuthority('ADMIN')"
+					th:href="@{'/group/edit/' + ${group.id}}">Edit </a></td>
+				<td><a sec:authorize="hasAuthority('ADMIN')"
+					th:href="@{'/group/delete/' + ${group.id}}">| Delete</a></td>
+				<td><a th:href="@{'/group/students_in_group/' + ${group.id}}">| List of students</a></td>
+			</tr>
+		</th:block>
+	</table>
+</body>
+</html>

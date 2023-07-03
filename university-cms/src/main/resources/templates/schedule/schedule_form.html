@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<head>
+<meta charset="utf-8" />
+<title>Group Form</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+	<form th:action="@{/group/save}" th:object="${group}" method="post"
+		style="max-width: 600px; margin: 0 auto;">
+		<input type="hidden" th:field="*{id}" />
+		<div class="m-3">
+			<div class="form-group row">
+				<label class="col-4 col-form-label">Group name: </label>
+				<div class="col-8">
+					<input type="text" th:field="*{name}" class="form-control" required />
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-4 col-form-label">Courses: </label>
+				<div class="col-8">
+					<th:block th:each="course : ${setCourses}">
+						<input type="checkbox" th:field="*{courses}"
+							th:text="${course.name}" th:value="${course.id}" class="m-2" />
+					</th:block>
+				</div>
+			</div>
+			<div>
+				<button type="submit" class="btn btn-primary">Update</button>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

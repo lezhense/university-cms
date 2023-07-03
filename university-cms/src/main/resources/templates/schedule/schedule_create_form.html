@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<head>
+<meta charset="utf-8" />
+<title>Group creating</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+	<div class="container text-center">
+		<div>
+			<h1>Group creating</h1>
+		</div>
+		<form action="#" th:action="@{/group/group_creation}"
+			th:object="${groupDto}" method="post"
+			style="max-width: 600px; margin: 0 auto;">
+			<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+				<p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+			</div>
+			<div class="m-3">
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Group name: </label>
+					<div class="col-8">
+						<input type="text" th:field="*{name}" class="form-control"
+							required />
+					</div>
+				</div>
+				<div>
+					<button type="submit" class="btn btn-primary">Create</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<head>
+<meta charset="utf-8" />
+<title>Admin Index</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+	<p>
+		This is the <b>administration</b> page. Only authenticated users with
+		role <b>ADMIN</b> are allowed to see this page.
+	</p>
+	<p>
+		<a href="/student/all">See all students</a>
+	</p>
+	<p>
+		<a href="/teacher/all">See all teachers</a>
+	</p>
+	<p>
+		<b>Course section</b>
+	</p>
+	<p>
+		<a href="/course/all">See all courses</a> <a
+			href="/course/create">| Create course</a>
+	</p>
+	<p>
+		<b>Group section</b>
+	</p>
+	<p>
+		<a href="/group/all">See all groups</a>
+		<a href="/group/create">| Create group</a>
+	</p>
+	<p>
+		<b>Schedule section</b>
+	</p>
+	<p>
+		<a href="/schedule/all">See all schedules</a>
+		<a href="/schedule/create">| Create schedule</a>
+	</p>
+</body>
+</html>

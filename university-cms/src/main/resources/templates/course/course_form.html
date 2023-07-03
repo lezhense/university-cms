@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<head>
+<meta charset="utf-8" />
+<title>Course Form</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+	<form th:action="@{/course/save}" th:object="${course}" method="post"
+		style="max-width: 600px; margin: 0 auto;">
+		<input type="hidden" th:field="*{id}" />
+		<div class="m-3">
+			<div class="form-group row">
+				<label class="col-4 col-form-label">Course name: </label>
+				<div class="col-8">
+					<input type="text" th:field="*{name}" class="form-control" required />
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-4 col-form-label">Teacher: </label>
+				<div class="col-8">
+					<select class="form-control" id="dropDownList"
+						th:field="*{teacher}">
+						<option disabled value="0">Please select...</option>
+						<option th:each="teacher : ${listTeachers}" th:value="${teacher.id}"
+							th:text="${teacher.username}"></option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-4 col-form-label">Groups: </label>
+				<div class="col-8">
+					<th:block th:each="group : ${listGroups}">
+						<input type="checkbox" th:field="*{groups}"
+							th:text="${group.name}" th:value="${group.id}" class="m-2" />
+					</th:block>
+				</div>
+			</div>
+			<div>
+				<button type="submit" class="btn btn-primary">Update</button>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

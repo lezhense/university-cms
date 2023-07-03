@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<head>
+<meta charset="utf-8" />
+<title>Student Index</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+	<p>
+		This is the <b>Student</b> zone
+	</p>
+	<p>
+		Only authenticated users with role <b>STUDENT</b> or <b>ADMIN</b> are
+		allowed to see this page.
+	</p>
+	<p>
+		<a href="/course/all">Click here to see all courses</a>
+	</p>
+	<p>
+		<b>Group section</b>
+	</p>
+	<p>
+		<a href="/group/all">See all groups and their students</a>
+	</p>
+</body>
+</html>

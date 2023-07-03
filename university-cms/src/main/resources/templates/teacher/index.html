@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<head>
+<meta charset="utf-8" />
+<title>Teacher Index</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+	<p>
+		This is the <b>Teacher</b> zone
+	</p>
+	<p>
+		Only authenticated users with roles <b>TEACHER</b> or <b>ADMIN</b> are
+		allowed to see this page.
+	</p>
+	<p>
+		<a href="/course/all">All courses</a>
+	</p>
+	<p>
+		<a href="/teacher/assigned_courses">Your assigned courses</a>
+	</p>
+	<p>
+		<b>Group section</b>
+	</p>
+	<p>
+		<a href="/group/all">All groups and their students</a>
+	</p>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Profile</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+	<h2 th:inline="text">
+		Hello <span th:remove="tag" sec:authentication="name"></span>!
+	</h2>
+	<div>
+		Your role is - <span th:remove="tag" sec:authentication="principal.authorities"></span>
+	</div>
+	<p>
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Log Out" />
+	</form>
+</body>
+</html>

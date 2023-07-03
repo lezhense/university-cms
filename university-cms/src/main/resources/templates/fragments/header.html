@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<head>
+<meta charset="UTF-8">
+<title>Header Fragment</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<header th:fragment="header">
+		<a th:href="@{/}">Welcome page</a>
+		<a sec:authorize="hasAnyAuthority('STUDENT','ADMIN')" th:href="@{/student/index}">| Student page </a>
+		<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin/index}">| Admin page</a>
+		<a sec:authorize="hasAnyAuthority('TEACHER','ADMIN')" th:href="@{/teacher/index}">| Teacher page</a> 
+		<a th:href="@{/profile}">| Profile page</a>
+		<a sec:authorize="isAnonymous()" th:href="@{/login}">| Login</a>
+	</header>
+</body>
+</html>

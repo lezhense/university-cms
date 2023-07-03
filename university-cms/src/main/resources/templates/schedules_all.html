@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<head>
+<meta charset="UTF-8">
+<title>Schedules</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+	<p>There is a table of all <b>schedules</b> below</p>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Date</th>
+			<th>Lessons</th>			
+			<th></th>
+			<th></th>
+		</tr>
+		<th:block th:each="scheduleForDay : ${schedules}">
+			<tr>
+				<td th:text="${scheduleForDay.id}"></td>
+				<td th:text="${#dates.format(scheduleForDay.scheduleDate, 'dd-MM-yyyy')}"></td>
+				<td th:text="${scheduleForDay.lessons}"></td>
+				<td><a sec:authorize="hasAuthority('ADMIN')"
+					th:href="@{'/schedule/edit/' + ${scheduleForDay.id}}">Edit </a></td>
+				<td><a sec:authorize="hasAuthority('ADMIN')"
+					th:href="@{'/schedule/delete/' + ${scheduleForDay.id}}">| Delete</a></td>
+			</tr>
+		</th:block>
+	</table>
+</body>
+</html>
